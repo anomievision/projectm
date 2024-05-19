@@ -1,0 +1,11 @@
+{
+    "cmake.configureArgs": [
+        "-DCMAKE_TOOLCHAIN_FILE=E:/GitHub/tools/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "-DCMAKE_INSTALL_PREFIX=${workspaceFolder}/dist",
+        "-DCMAKE_CONFIGURATION_TYPES=Release;Debug",
+        "-DBUILD_TESTING=NO",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DVCPKG_TARGET_TRIPLET=x64-windows-static",
+        "-DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded$<$<CONFIG:Debug>:Debug>"
+    ]
+}
