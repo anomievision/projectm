@@ -129,10 +129,15 @@ function Start-ConfigureBuild {
 # Build project
 function Start-Build {
     param (
-        [string]$Build
+        [string]$Build,
+        [string]$BuildType
     )
 
-    cmake --build "$BUILD" --target install --parallel
+    if ($BuildType -eq "Release") {
+        cmake --build "$BUILD" --config Release --target install --parallel
+    } else {
+        cmake --build "$BUILD" --config Debug --target install --parallel
+    }
 }
 
 # ------------
@@ -204,11 +209,11 @@ if (-not $SkipClean) {
 if ($BuildDebug) {
     $BuildType = "Debug"
     Start-ConfigureBuild -Source $Root -Build $Build -Dist $Dist -BuildTarget $BuildTarget -BuildType $BuildType -BuildStatic $BuildStatic -BuildTesting $BuildTesting -OptionPThreads $OptionPThreads
-    Start-Build -Build $Build
+    Start-Build -Build $Build -BuildType $BuildType
 }
 
 if ($BuildRelease) {
     $BuildType = "Release"
     Start-ConfigureBuild -Source $Root -Build $Build -Dist $Dist -BuildTarget $BuildTarget -BuildType $BuildType -BuildStatic $BuildStatic -BuildTesting $BuildTesting -OptionPThreads $OptionPThreads
-    Start-Build -Build $Build
+    Start-Build -Build $Build -BuildType $BuildType
 }
