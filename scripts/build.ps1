@@ -84,7 +84,7 @@ function Start-ConfigureBuild {
         } else {
             $PThreads = "OFF"
         }
-    else {
+    } else {
         $PThreads = "OFF"
     }
 
@@ -129,7 +129,7 @@ function Start-ConfigureBuild {
 # Build project
 function Start-Build {
     param (
-        [string]$Build,
+        [string]$Build
     )
 
     cmake --build "$BUILD" --target install --parallel
